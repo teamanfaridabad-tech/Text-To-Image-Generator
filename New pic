@@ -1,0 +1,34 @@
+
+
+# Create a transparent 150x150 image
+img_size = (150, 150)
+img = Image.new("RGBA", img_size, (0, 0, 0, 0))
+
+draw = ImageDraw.Draw(img)
+
+# Define the raised fist emoji
+fist_emoji = "✊"
+
+# Load a font
+# You might need to specify the path to a TTF font file on your system
+# For example, on Windows: "C:\\Windows\\Fonts\\Arial-Bold.ttf"
+# On Linux or Mac, you can use a path to a TTF file or use a default font
+try:
+    font_path = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
+    font = ImageFont.truetype(font_path, 40)
+    font_small = ImageFont.truetype(font_path, 12)
+except:
+    # Fallback to default font if specific font not found
+    font = ImageFont.load_default()
+    font_small = ImageFont.load_default()
+
+# Draw the fist emoji on the left
+draw.text((10, 55), fist_emoji, font=font, fill="white")
+
+# Add the text on the right
+text = "The Unfiltered Story of India"
+# Wrap text if needed, but here we assume it fits
+draw.text((60, 70), text, font=font_small, fill="white")
+
+# Save the image
+img.save("watermark.png")
